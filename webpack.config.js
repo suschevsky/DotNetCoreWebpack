@@ -9,11 +9,13 @@ const webpackConfig = {
     entry: {
         index: path.resolve(__dirname, 'src/index.ts'),
         about: path.resolve(__dirname, 'src/about.ts'),
-        contact: path.resolve(__dirname, 'src/contact.ts')
+        contact: path.resolve(__dirname, 'src/contact.ts'),
+        criticalCss: path.resolve(__dirname, 'src/criticalCss.ts')
     },
     output: {
-        path: path.join(__dirname, 'dist'),
-        filename: '[name].js'
+        path: path.join(__dirname, 'wwwroot'),
+        filename: '[name].bundle.js',
+        publicPath: 'http://localhost:8080/wwwroot/'
     },
     module: {
         rules: [

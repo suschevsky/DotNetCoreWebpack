@@ -1,3 +1,13 @@
+@*
+@{
+    ViewData["BundleUrl"] = HttpContext.Current.IsDebuggingEnabled ? "//localhost:8080/wwwroot" : "/wwwroot";
+	BundleResponse criticalCssBundle = Optimizer.BuildBundle("~/dist/criticalCss.css", new OptimizationSettings() {
+		ApplicationPath = HttpContext.Current.Server.MapPath("~/"),
+		BundleTable = new BundleCollection() { { new StyleBundle("~/wwwroot/criticalCssBundle.css").Include("~/wwwroot/criticalCssBundle.css") } }
+	});
+}
+*@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,15 +16,47 @@
     <title>@ViewData["Title"] - DotNetCoreWebpack</title>
 
     <environment names="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
+        <script src="http://localhost:8080/webpack-dev-server.js"></script>
+        @*
+        TODO Include commons bundle
+        <script src="//localhost:8080/wwwroot/commons.bundle.js"></script>        
+        *@
+
+        @*Need this tag to include css*@
+        <script src="//localhost:8080/wwwroot/criticalCss.bundle.js"></script>
     </environment>
+
     <environment names="Staging,Production">
+
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+              asp-fallback-test-class="sr-only"
+              asp-fallback-test-property="position"
+              asp-fallback-test-value="absolute" />
+
+        <link rel="stylesheet"
+            href="~/css/index.css"
+            asp-append-version="true" />
+
+        @*
+            //TODO
+            <style>@criticalCss.Content</style>        
+            @if (HttpContext.Current.IsDebuggingEnabled)
+            {
+                <script src="http://localhost:8080/webpack-dev-server.js"></script>
+                <script src="@ViewBag.BundleUrl/commons.bundle.js"></script>
+                <script src="@ViewBag.BundleUrl/criticalCssBundle.bundle.js"></script>
+            }
+            else
+            {
+                <script src="@ViewBag.BundleUrl/commons.bundle.js"></script>
+            }        
+        *@
+
     </environment>
+
+    @RenderSection("styles", required: false)
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">

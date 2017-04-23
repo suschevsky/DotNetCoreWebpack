@@ -1,4 +1,4 @@
-import './styles.scss';
+import './index.scss';
 
 (() => {
     console.log('src/index.ts');
