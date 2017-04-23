@@ -1,5 +1,6 @@
 wwwroot
 .idea
+.vscode
 
 # Created by https://www.gitignore.io/api/node,webstorm,visualstudio,visualstudiocode
 
