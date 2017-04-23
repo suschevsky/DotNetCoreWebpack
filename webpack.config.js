@@ -38,9 +38,8 @@ const webpackConfig = {
     ],
     resolve: {
         alias: {
-            "$": "jQuery",
-            "jquery.ui.widget": "jquery-ui/ui/widget"            
-        },        
+            "jquery.validation": "jquery-validation"
+        },
         extensions: [".js", ".scss", ".ts", ".tsx"]
     }
 };
