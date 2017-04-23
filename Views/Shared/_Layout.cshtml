@@ -41,11 +41,7 @@
               asp-fallback-test-class="sr-only"
               asp-fallback-test-property="position"
               asp-fallback-test-value="absolute" />
-        *@              
-
-        <link rel="stylesheet"
-            href="~/index.css"
-            asp-append-version="true" />
+        *@
 
         <style>@BundlerMinifier.FileHelpers.ReadAllText("wwwroot/criticalCss.css")</style>
 
@@ -87,10 +83,13 @@
                     </div>
                 </li>
             </ul>
+            @*
+            Remove search form due to critical css
             <form class="form-inline my-2 my-md-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search">
                 <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
             </form>
+            *@
         </div>
 
     </nav>

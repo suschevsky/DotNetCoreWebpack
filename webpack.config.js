@@ -39,7 +39,8 @@ const webpackConfig = {
         extensions: [".js", ".scss", ".ts", ".tsx"]
     },
     devServer: {
-        headers: { "Access-Control-Allow-Origin": "*" }
+        headers: { "Access-Control-Allow-Origin": "*" },
+        stats: 'errors-only'        
     }
 };
 

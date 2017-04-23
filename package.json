@@ -4,7 +4,7 @@
   "description": "Client side of DotNetCoreWebpack project",
   "main": "index.js",
   "scripts": {
-    "build": "npm run clean && cross-env NODE_ENV=production webpack -p",
+    "build": "npm run clean && cross-env NODE_ENV=production webpack -p --hide-modules",
     "clean": "rimraf wwwroot",
     "dev": "webpack-dev-server --hot --inline --profile --watch --content-base wwwroot",
     "test": "echo \"Error: no test specified\" && exit 1"
