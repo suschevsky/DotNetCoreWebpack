@@ -10,7 +10,8 @@ const webpackConfig = {
         index: path.resolve(__dirname, 'src/index.ts'),
         about: path.resolve(__dirname, 'src/about.ts'),
         contact: path.resolve(__dirname, 'src/contact.ts'),
-        criticalCss: path.resolve(__dirname, 'src/criticalCss.ts')
+        criticalCss: path.resolve(__dirname, 'src/criticalCss.ts'),
+        jqueryValidation: path.resolve(__dirname, 'src/jqueryValidation.ts')        
     },
     output: {
         path: path.join(__dirname, 'wwwroot'),
@@ -37,10 +38,6 @@ const webpackConfig = {
     ],
     resolve: {
         extensions: [".js", ".scss", ".ts", ".tsx"]
-    },
-    devServer: {
-        headers: { "Access-Control-Allow-Origin": "*" },
-        stats: 'errors-only'        
     }
 };
 
@@ -48,6 +45,9 @@ if (isProduction) {
     webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin());
 } else {
     webpackConfig.devtool = 'source-map';
+    webpackConfig.devServer = {
+        headers: { 'Access-Control-Allow-Origin': '*' }
+    };    
 }
 
 module.exports = webpackConfig;
