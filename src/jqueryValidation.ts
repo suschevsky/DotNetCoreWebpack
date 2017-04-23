@@ -1,13 +1,10 @@
 import * as $ from 'jquery';
+(<any>window).jQuery = $;
 
-//TODO Import validation somehow
-//import * as validate from 'jquery-validation';
-//import * as validationUnobtrusive 'jquery-validation-unobtrusive';
+import 'jquery.validation';
+import 'jquery-validation-unobtrusive';
 
 (() => {
-	//Works fine:
+	//Works fine
 	//$('body').css('background-color', 'green');
-
-	console.log('%cTODO Import jquery-validation & jquery.validate.unobtrusive', 'font-size: 200%;color: red;');
-
 })();

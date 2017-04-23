@@ -37,6 +37,10 @@ const webpackConfig = {
         new ExtractTextPlugin('[name].css')
     ],
     resolve: {
+        alias: {
+            "$": "jQuery",
+            "jquery.ui.widget": "jquery-ui/ui/widget"            
+        },        
         extensions: [".js", ".scss", ".ts", ".tsx"]
     }
 };
