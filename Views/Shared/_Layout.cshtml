@@ -1,13 +1,19 @@
 @*
-@{
+    ViewData["DevelopmentUrl"] = "";
     ViewData["BundleUrl"] = HttpContext.Current.IsDebuggingEnabled ? "//localhost:8080/wwwroot" : "/wwwroot";
-	BundleResponse criticalCssBundle = Optimizer.BuildBundle("~/dist/criticalCss.css", new OptimizationSettings() {
-		ApplicationPath = HttpContext.Current.Server.MapPath("~/"),
-		BundleTable = new BundleCollection() { { new StyleBundle("~/wwwroot/criticalCssBundle.css").Include("~/wwwroot/criticalCssBundle.css") } }
-	});
-}
-*@
 
+    var criticalCssBundle = Optimizer.BuildBundle("~/dist/criticalCss.css", new OptimizationSettings() {
+		ApplicationPath = HttpContext.Current.Server.MapPath("~/"),
+		BundleTable = new BundleCollection() { { new StyleBundle("~/wwwroot/criticalCss.css").Include("~/wwwroot/criticalCss.css") } }
+	});
+//@using Microsoft.AspNetCore.Mvc.OptimizationSettings;
+
+    var criticalCssBundle = Optimizer.BuildBundle("~/dist/criticalCss.css", new Optimizer.OptimizationSettings() {
+		ApplicationPath = HttpContext.Current.Server.MapPath("~/"),
+		BundleTable = new BundleCollection() { { new StyleBundle("~/wwwroot/criticalCss.css").Include("~/wwwroot/criticalCss.css") } }
+	});
+    @using Microsoft.AspNetCore.Mvc.BuildBundle;
+*@
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,41 +23,31 @@
 
     <environment names="Development">
         <script src="http://localhost:8080/webpack-dev-server.js"></script>
+
+        @*Need this tag to include critical css*@
+        <script src="//localhost:8080/wwwroot/criticalCss.bundle.js"></script>
+
         @*
         TODO Include commons bundle
         <script src="//localhost:8080/wwwroot/commons.bundle.js"></script>        
         *@
-
-        @*Need this tag to include critical css*@
-        <script src="//localhost:8080/wwwroot/criticalCss.bundle.js"></script>
     </environment>
 
     <environment names="Staging,Production">
 
+        @*
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only"
               asp-fallback-test-property="position"
               asp-fallback-test-value="absolute" />
+        *@              
 
         <link rel="stylesheet"
-            href="~/css/index.css"
+            href="~/index.css"
             asp-append-version="true" />
 
-        @*
-            //TODO Restore critical css
-            <style>@criticalCss.Content</style>        
-            @if (HttpContext.Current.IsDebuggingEnabled)
-            {
-                <script src="http://localhost:8080/webpack-dev-server.js"></script>
-                <script src="@ViewBag.BundleUrl/commons.bundle.js"></script>
-                <script src="@ViewBag.BundleUrl/criticalCssBundle.bundle.js"></script>
-            }
-            else
-            {
-                <script src="@ViewBag.BundleUrl/commons.bundle.js"></script>
-            }        
-        *@
+        <style>@BundlerMinifier.FileHelpers.ReadAllText("wwwroot/criticalCss.css")</style>
 
     </environment>
 
