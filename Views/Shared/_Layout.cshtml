@@ -22,7 +22,7 @@
         <script src="//localhost:8080/wwwroot/commons.bundle.js"></script>        
         *@
 
-        @*Need this tag to include css*@
+        @*Need this tag to include critical css*@
         <script src="//localhost:8080/wwwroot/criticalCss.bundle.js"></script>
     </environment>
 
@@ -39,7 +39,7 @@
             asp-append-version="true" />
 
         @*
-            //TODO
+            //TODO Restore critical css
             <style>@criticalCss.Content</style>        
             @if (HttpContext.Current.IsDebuggingEnabled)
             {
@@ -59,29 +59,6 @@
 
 </head>
 <body>
-    @*
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">DotNetCoreWebpack</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                </ul>
-                @await Html.PartialAsync("_LoginPartial")
-            </div>
-        </div>
-    </div>
-    *@
 
     <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
 
@@ -126,25 +103,29 @@
         @RenderBody()
     </main>
 
-    @*
-    container-fluid
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-    </div>    
-    *@
-
     @* TODO move to some scss file *@
     <style>
         footer {
             background-color: grey;
         }
+        .footer-content {
+            padding: 2em 0;
+        }
     </style>
 
     <footer>
-        <p>&copy; 2017 - DotNetCoreWebpack</p>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col col-12">
+                    <div class="footer-content">
+                        &copy; 2017 - DotNetCoreWebpack
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
 
+    @*
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
@@ -161,6 +142,7 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
+    *@
 
     @RenderSection("scripts", required: false)
 </body>
