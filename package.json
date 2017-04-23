@@ -1,0 +1,28 @@
+{
+  "name": "dotnet-core-webpack",
+  "version": "1.0.0",
+  "description": "Client side of DotNetCoreWebpack project",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run clean && cross-env NODE_ENV=production webpack -p",
+    "clean": "rimraf wwwroot",
+    "dev": "webpack-dev-server --hot --inline --profile --watch --content-base wwwroot",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sergey Suschevsky <suschevsky.sv@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.1.2",
+    "css-loader": "^0.28.0",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "node-sass": "^4.5.2",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.16.1",
+    "typescript": "^2.2.2",
+    "webpack": "^2.4.1",
+    "webpack-dev-server": "^2.4.3"
+  },
+  "dependencies": {
+    "cross-env": "^4.0.0"
+  }
+}
