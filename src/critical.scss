@@ -52,6 +52,7 @@
 // Utility classes
 //@import "../node_modules/bootstrap/scss/_utilities";
 
+//saves 0.1kB to critical css
 @include bg-variant('.bg-inverse', $brand-inverse);
 
 //to avoid loading of whole _dropdown.scss (saves about 2kB)

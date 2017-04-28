@@ -14,6 +14,13 @@
 	});
     @using Microsoft.AspNetCore.Mvc.BuildBundle;
 *@
+
+@using Newtonsoft.Json;
+
+@{
+    ViewData["DDD"] = "DDD value";
+}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,6 +95,10 @@
                 <li class="nav-item">
                     <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
                 </li>                                
+
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">home</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">about</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">contact</a></li>
             </ul>
             @*
             Remove search form due to critical css
@@ -101,6 +112,16 @@
     </nav>
 
     <main>
+
+        <hr />
+
+        <code>
+            @* blue & yellow and it is goood to add "white": #f7ff45 *@
+            <pre style="font-size: 70%;background-color: #0908a4;color: #feff6c;"><span style="color: #ffffff;">ViewData:</span>@JsonConvert.SerializeObject(ViewData, Formatting.Indented)</pre>
+        </code>
+
+        <hr />
+
         @RenderBody()
     </main>
 
