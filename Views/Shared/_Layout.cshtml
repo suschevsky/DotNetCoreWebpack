@@ -72,6 +72,28 @@
         @*TODO @await Html.PartialAsync("_LoginPartial")*@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
+
+            @{
+                var menuItems = new []{ "Home", "About", "Contact" };
+                for (int i = 0; i < menuItems.Length; i++)
+                {
+                    var isActive = @menuItems[i] == ViewData["Title"];
+                    var activeClassName = isActive == true ? "active" : null;
+                    var url = "/Home" + menuItems[i];
+                    if (ViewData["Title"] != "Home") {
+                        url = "/Home" + menuItems[i];                        
+                    }
+                    //TODO <span class="sr-only">(current)</span>
+                    <li class="nav-item @activeClassName">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="@menuItems[i]">
+                            @menuItems[i]
+                        </a>
+                    </li>
+                }
+            }
+
+                @*TODO If active, add & active .sr-only*@
+                @*
                 <li class="nav-item active">
                     <a class="nav-link" href="javascript:void(0)">Home <span class="sr-only">(current)</span></a>
                 </li>
@@ -89,16 +111,15 @@
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </li>
+                *@
+
+                @*TODO Replace with Sign In / Sign Up?*@
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                    <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Log in</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
                 </li>                                
-
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">about</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">contact</a></li>
             </ul>
             @*
             Remove search form due to critical css
