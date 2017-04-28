@@ -57,6 +57,12 @@ namespace DotNetCoreWebpack
             {
                 options.EnableForHttps = true;
             });
+            //For some reason doesn't work with css & js
+            // options =>
+            // {
+            //     options.EnableForHttps = true;
+            //     options.MimeTypes = new[] {"text/plain"};
+            // }            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
